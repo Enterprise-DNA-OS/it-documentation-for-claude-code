@@ -289,4 +289,3 @@ Draft the weekly documentation review. Read the resulting draft containing atten
 ```bash
 node scripts/documentation.mjs draft-weekly-review
 ```
-
