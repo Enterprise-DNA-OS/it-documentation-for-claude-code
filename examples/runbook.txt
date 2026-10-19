@@ -1,0 +1,4 @@
+1. Confirm the approved change window.
+2. Ask the responsible engineer to perform the documented recovery.
+3. Verify connectivity with a synthetic check.
+4. Record the evidence reference and outstanding work.

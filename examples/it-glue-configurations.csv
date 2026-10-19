@@ -1,0 +1,3 @@
+ID,Organization,Name,Configuration Type,Location,Configuration Status,Manufacturer,Model,Serial Number,Warranty Expires
+101,Harbour Demo IT,Warehouse switch,Network,Christchurch,Active,Example Networks,Switch 24,DEMO-101,2028-10-01
+102,Harbour Demo IT,Warehouse workstation,Workstation,Christchurch,Active,Example Computers,Desk 14,DEMO-102,

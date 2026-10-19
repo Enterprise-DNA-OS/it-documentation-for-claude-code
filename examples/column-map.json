@@ -1,0 +1,9 @@
+{
+  "source_id": "ID",
+  "organisation": "Organization",
+  "name": "Name",
+  "kind": "Configuration Type",
+  "site": "Location",
+  "state": "Configuration Status",
+  "warranty_on": "Warranty Expires"
+}

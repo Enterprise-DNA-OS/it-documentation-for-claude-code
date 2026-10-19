@@ -1,0 +1,29 @@
+[
+  {
+    "label": "Basic",
+    "amount": 29,
+    "currency": "USD",
+    "per": "user/month on a 36-month term; five-user minimum; onboarding extra",
+    "source": "https://www.itglue.com/pricing/",
+    "checked": "2026-10-19",
+    "quote": "$29/user"
+  },
+  {
+    "label": "Select",
+    "amount": 38,
+    "currency": "USD",
+    "per": "user/month on a 36-month term; five-user minimum; onboarding extra",
+    "source": "https://www.itglue.com/pricing/",
+    "checked": "2026-10-19",
+    "quote": "$38/user"
+  },
+  {
+    "label": "Enterprise",
+    "amount": 44,
+    "currency": "USD",
+    "per": "user/month on a 36-month term; five-user minimum; onboarding extra",
+    "source": "https://www.itglue.com/pricing/",
+    "checked": "2026-10-19",
+    "quote": "$44/user"
+  }
+]

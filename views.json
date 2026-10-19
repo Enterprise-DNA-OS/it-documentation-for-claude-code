@@ -1,13 +1,45 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "IT Documentation for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Documentation review",
+    "subtitle": "Fictional demo or your private records. Read-only.",
     "sections": [
       {
         "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "sql": "select i.name,coalesce(a.site,ta.site,'') as site,i.owner,i.issue,i.due_on from attention_items i left join assets a on i.record_type='asset' and a.id=i.id left join tasks t on i.record_type='task' and t.id=i.id left join assets ta on ta.id=t.asset_id order by i.due_on,i.name,site,i.issue"
+      },
+      {
+        "title": "Open actions",
+        "sql": "select name,owner,due_on from tasks where state='open' order by due_on"
+      }
+    ]
+  },
+  {
+    "name": "coverage",
+    "title": "Recovery documentation",
+    "sections": [
+      {
+        "title": "Asset coverage",
+        "sql": "select name,site,owner,criticality,runbooks,current_runbooks from asset_coverage where state='active' order by site,name"
+      },
+      {
+        "title": "Dependencies",
+        "sql": "select a.name as asset,a.site,p.name as depends_on from dependencies d join assets a on a.id=d.asset_id join assets p on p.id=d.depends_on order by a.name"
+      }
+    ]
+  },
+  {
+    "name": "evidence",
+    "title": "Review evidence",
+    "sections": [
+      {
+        "title": "Record checks",
+        "note": "Evidence checks and local review periods, not a legal certification.",
+        "sql": "select name,rule,issue from compliance_items order by rule,name"
+      },
+      {
+        "title": "Runbook versions",
+        "sql": "select name,version,state,reviewer,due_on from runbook_status order by name"
       }
     ]
   }

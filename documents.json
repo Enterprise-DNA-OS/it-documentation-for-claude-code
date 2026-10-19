@@ -1,11 +1,54 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "asset-handover",
+    "title": "IT asset handover",
+    "for_each": "select id,name from assets where state='active' order by name",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Asset",
+        "sql": "select name,kind,site,owner,criticality,warranty_on,renewal_on from assets where id=$1"
+      },
+      {
+        "title": "Recovery instructions",
+        "sql": "select b.name,b.version,r.steps,b.state,b.due_on,coalesce(b.current_review,false) as current_review from runbook_status b join runbooks r on r.id=b.id join runbook_assets l on l.runbook_id=b.id where l.asset_id=$1 order by b.name"
+      },
+      {
+        "title": "Outstanding work",
+        "sql": "select name,owner,due_on from tasks where asset_id=$1 and state='open' order by due_on"
+      }
+    ]
+  },
+  {
+    "name": "runbook-review",
+    "title": "Runbook review record",
+    "for_each": "select id,name from runbooks order by name",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Procedure",
+        "sql": "select name,purpose,owner,version,steps from runbooks where id=$1"
+      },
+      {
+        "title": "Review history",
+        "sql": "select version,reviewer,reviewed_on,due_on,evidence from reviews where runbook_id=$1 order by reviewed_on,created_at"
+      }
+    ]
+  },
+  {
+    "name": "control-review",
+    "title": "Documentation controls report",
+    "for_each": "select id,name from workspace",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Safeguard evidence",
+        "sql": "select name,access_review_on,access_review_evidence,backup_test_on,backup_test_evidence from workspace where id=$1"
+      },
+      {
+        "title": "Open checks",
+        "sql": "select name,rule,issue,source from compliance_items where $1::uuid is not null order by rule,name"
+      }
     ]
   }
 ]
